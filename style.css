@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-blue: #0200C2;
+    --vibrant-blue: #1300BD;
+    --dark-blue: #08003B;
+    --hero-btn-gradient: linear-gradient(90deg, #0200C2 0%, #08003B 100%);
+    --bg-dark: #000000;
+    --text-white: #ffffff;
+    --text-black: #000000;
+    --gray-border: #DEDEDE;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+
+/* Lauda 01: Hero */
+.hero-lauda-01 {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: url('assets/hero_bg_organized.png') no-repeat center top;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 8rem;
+}
+
+.hero-header {
+    width: 100%;
+    padding: 4rem 0 7rem;
+    display: flex;
+    justify-content: center;
+    z-index: 20;
+}
+
+.main-logo {
+    height: 60px;
+    width: auto;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+}
+
+.white-glow {
+    color: #fff;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+}
+
+.hero-content .subtitle {
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    margin-bottom: 4.5rem;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-cta .btn-hero {
+    display: inline-block;
+    padding: 1.5rem 4rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    background: var(--hero-btn-gradient);
+    border-radius: 15px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 15px 45px rgba(2, 0, 194, 0.4);
+}
+
+.hero-cta .btn-hero:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 70px rgba(2, 0, 194, 0.6);
+    filter: brightness(1.2);
+}
+
+/* Floating Notifications */
+.floating-notifs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.notif-float {
+    position: absolute;
+    width: 280px;
+    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.5));
+    animation: floatNotif 7s ease-in-out infinite;
+}
+
+.notif-left {
+    top: 22%;
+    left: 10%;
+}
+
+.notif-right {
+    top: 45%;
+    right: 10%;
+    animation-delay: -3.5s;
+}
+
+@keyframes floatNotif {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-25px) rotate(1deg); }
+}
+
+/* Lauda 02: Transform Section */
+.section-lauda-02 {
+    position: relative;
+    padding: 8rem 0;
+    background: #000000;
+    min-height: 1357px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.section-lauda-02::before {
+    content: "";
+    position: absolute;
+    top: 69.8px;
+    left: -54px;
+    width: 2003px;
+    height: 413.7px;
+    background: url('assets/lauda02_bg_shapes.png') no-repeat center center;
+    background-size: contain;
+    filter: brightness(0.2);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.blue-shapes-layer {
+    position: absolute;
+    top: 586px;
+    left: 1514px;
+    width: 1045px;
+    height: 1040px;
+    background: url('assets/lauda02_pattern.png') no-repeat center center;
+    background-size: contain;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.floating-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.ac-icon {
+    position: absolute;
+    width: 100px;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
+    animation: floatIcon 6s ease-in-out infinite;
+}
+
+.ac-icon-1 { top: 15%; right: 15%; }
+.ac-icon-2 { top: 65%; left: 8%; animation-delay: -2s; }
+.ac-icon-3 { bottom: 10%; right: 20%; animation-delay: -4s; }
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+}
+
+.lauda-02-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 8rem;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.title-uppercase {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 3.125rem);
+    font-weight: 500;
+    line-height: 1.3;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.title-medium {
+    font-weight: 500;
+}
+
+.title-bold {
+    font-weight: 700;
+}
+
+.description {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 3rem;
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+.stats-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3.08rem);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.stat-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+    color: rgba(255,255,255,0.85);
+    white-space: nowrap;
+}
+
+.divider-vertical {
+    width: 2px;
+    height: 78px;
+    background-color: rgba(255,255,255,0.4);
+    flex-shrink: 0;
+}
+
+.partners-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.partners-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1rem, 1.6vw, 1.4rem);
+    text-transform: uppercase;
+}
+
+.partners-label-regular {
+    font-weight: 400;
+}
+
+.partners-label-bold {
+    font-weight: 700;
+}
+
+.partners-pills {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.partner-pill {
+    background-color: #fff;
+    padding: 1rem 3rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.pill-new-partner img { height: 40px; }
+.pill-shein img { height: 28px; }
+
+/* Form Card */
+.lauda-02-form-card {
+    background: #FFFFFF;
+    padding: 2rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    color: var(--text-black);
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 0.8rem;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    margin-bottom: 0.4375rem;
+    color: #000000;
+    line-height: 1;
+}
+
+.form-group label .blue-text {
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    height: 34px;
+    padding: 0 0.8rem;
+    border: 1px solid #C7C7C7;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    background-color: #FFFFFF;
+    color: #000000;
+    appearance: none;
+}
+
+.btn-submit {
+    width: auto;
+    display: block;
+    margin: 0.625rem auto 0;
+    padding: 0.7rem 1.6rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #1300BD 0%, #08003B 100%);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: filter 0.2s ease, transform 0.2s ease;
+    letter-spacing: 0.01em;
+}
+
+.btn-submit:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+/* Lauda 03: Institutional Section */
+.section-lauda-03 {
+    background-color: #FFFFFF;
+    color: #000000;
+    padding: 9rem 0 10rem;
+    text-align: center;
+}
+
+.institutional-container {
+    max-width: 1214px;
+}
+
+.institutional-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.institutional-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.22;
+    color: #000000;
+    margin: 0;
+}
+
+.institutional-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    font-weight: 400;
+    line-height: 1.22;
+    color: #000000;
+    max-width: 1100px;
+    margin: 0;
+}
+
+.btn-white-blue {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 1.25rem 5rem;
+    background: linear-gradient(135deg, #1300BD 0%, #08003B 100%);
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 12px;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    box-shadow: 0 12px 30px rgba(19, 0, 189, 0.3);
+}
+
+.btn-white-blue:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(19, 0, 189, 0.5);
+    filter: brightness(1.1);
+}
+
+/* Footer */
+.main-footer {
+    background-color: #000000;
+    padding: 6rem 0 4rem;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+.footer-social {
+    display: flex;
+    gap: 1.5rem;
+    padding-left: 0.25rem;
+}
+
+.footer-social a img {
+    height: 28px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.footer-social a:hover img {
+    transform: scale(1.15);
+    opacity: 0.75;
+}
+
+.footer-info {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2.5rem;
+}
+
+.footer-badge {
+    height: 120px;
+    width: auto;
+}
+
+.footer-legal {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+}
+
+.footer-legal p {
+    margin-bottom: 0.3rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 3rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .container { padding: 0 2rem; }
+    .lauda-02-grid { grid-template-columns: 1fr; gap: 4rem; }
+    .footer-grid { flex-direction: column; align-items: center; text-align: center; gap: 5rem; }
+    .footer-info { align-items: center; text-align: center; }
+}
