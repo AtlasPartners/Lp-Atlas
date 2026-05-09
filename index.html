@@ -25,14 +25,14 @@
                 <p class="subtitle">Nós gerenciamos sua operação e aplicamos estratégias para <br> transformar sua loja em uma máquina de vendas previsíveis.</p>
                 
                 <div class="hero-cta">
-                    <a href="#" class="btn btn-hero">Quero escalar meu faturamento</a>
+                    <a href="#formulario" class="btn btn-hero">Quero escalar meu faturamento</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Lauda 02: Transform Section -->
-    <section class="section-lauda-02">
+    <section id="formulario" class="section-lauda-02">
         <div class="blue-shapes-layer"></div>
         <div class="floating-icons">
             <img src="assets/icon_ac_1.png" alt="" class="ac-icon ac-icon-1">
@@ -47,12 +47,12 @@
                 
                 <div class="stats-row">
                     <div class="stat-item">
-                        <span class="stat-number">+150</span>
+                        <span class="stat-number counter" data-target="+150">+0</span>
                         <span class="stat-label">LOJAS GERENCIADAS</span>
                     </div>
                     <div class="divider-vertical"></div>
                     <div class="stat-item">
-                        <span class="stat-number">+R$ 600k</span>
+                        <span class="stat-number counter" data-target="+R$ 600k">+R$ 0k</span>
                         <span class="stat-label">EM FATURAMENTO</span>
                     </div>
                 </div>
@@ -124,39 +124,46 @@
             <div class="institutional-content">
                 <h2 class="institutional-title">A assessoria que pensa como vendedor</h2>
                 <p class="institutional-text">A Atlas Company nasceu para resolver um problema real: vendedores cheios de potencial, sem a estratégia certa para crescer nos marketplaces.</p>
-                <a href="#" class="btn btn-white-blue">QUERO VENDER MAIS</a>
+                <a href="#formulario" class="btn btn-white-blue">QUERO VENDER MAIS</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="main-footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <img src="assets/logo_centered.png" alt="Atlas Company" class="footer-logo">
-                <div class="footer-social">
-                    <a href="#" aria-label="Instagram"><img src="assets/icon_instagram.png" alt="Instagram"></a>
-                    <a href="#" aria-label="YouTube"><img src="assets/icon_youtube.png" alt="YouTube"></a>
-                    <a href="#" aria-label="LinkedIn"><img src="assets/icon_linkedin.png" alt="LinkedIn"></a>
-                </div>
+        <div class="container">
+            <div class="footer-top-logo">
+                <img src="assets/logo_centered.png" alt="Atlas Company" class="footer-logo-small">
             </div>
-
-            <div class="footer-info">
-                <div class="badge-wrapper">
-                    <img src="assets/badge_atlas.png" alt="#vemparaatlas" class="footer-badge">
-                </div>
-                <div class="footer-legal">
-                    <p>ATLAS COMPANY SOLUCOES DIGITAIS LTDA</p>
-                    <p>CNPJ: 50.840.165/0001-44</p>
+            
+            <div class="footer-middle-row">
+                <div class="footer-legal-left">
+                    <p>CNPJ: 50.840.165/0001-44 ATLAS COMPANY</p>
+                    <p>ASSESSORIA DE MARKETPLACE</p>
                     <p>Rua Jose Maria de Lacerda, 1900 - Cidade Industrial</p>
                     <p>Contagem - MG, 32.210-120</p>
                 </div>
+                
+                <div class="footer-social-right">
+                    <h3 class="social-title">#vemparaatlas</h3>
+                    <p class="social-subtitle">Siga-nos nas redes sociais:</p>
+                    <div class="footer-social-icons">
+                        <a href="#" aria-label="Instagram"><img src="assets/icon_instagram.png" alt="Instagram"></a>
+                        <a href="#" aria-label="YouTube"><img src="assets/icon_youtube.png" alt="YouTube"></a>
+                        <a href="#" aria-label="LinkedIn"><img src="assets/icon_linkedin.png" alt="LinkedIn"></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-line">
+                <p>Todos os direitos reservados. <a href="#" class="privacy-link">[Política de Privacidade]</a></p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Atlas Company. Todos os direitos reservados.</p>
-        </div>
     </footer>
+
+    <!-- Firebase SDK (Compat version for simplicity) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
 
     <script src="main.js"></script>
 </body>

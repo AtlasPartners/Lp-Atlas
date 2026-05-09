@@ -7,16 +7,32 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'start'
+                    block: 'center'
                 });
             }
         });
     });
 
+    // Configuração do Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyBVRogWm0Og9UKIjs7rjizmMT2d0NWxVS0",
+        authDomain: "atlas-company-2a7fa.firebaseapp.com",
+        projectId: "atlas-company-2a7fa",
+        storageBucket: "atlas-company-2a7fa.firebasestorage.app",
+        messagingSenderId: "451783344947",
+        appId: "1:451783344947:web:83e55e36221a3dd7b83446"
+    };
+
+    // Inicializa o Firebase
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    const db = firebase.firestore();
+
     // Form Submission Handling
-    const leadForm = document.getElementById('lead-form');
+    const leadForm = document.getElementById('contactForm');
     if (leadForm) {
-        leadForm.addEventListener('submit', (e) => {
+        leadForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = leadForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerText;
@@ -26,35 +42,64 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
             submitBtn.style.opacity = '0.7';
 
-            setTimeout(() => {
-                alert('Obrigado! Entraremos em contato em breve.');
+            // Coleta os dados do formulário
+            const formData = {
+                nome: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                empresa: document.getElementById('company').value,
+                funcionarios: document.getElementById('employees').value,
+                faturamento: document.getElementById('revenue').value,
+                experiencia: document.getElementById('experience').value,
+                dataCadastro: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            try {
+                // Salva no Firestore na coleção 'leads'
+                await db.collection("leads").add(formData);
+
+                alert('Obrigado! Seus dados foram enviados com sucesso.');
                 leadForm.reset();
+            } catch (error) {
+                console.error("Erro ao enviar contato: ", error);
+                alert('Ocorreu um erro ao enviar. Verifique o console ou tente novamente mais tarde.');
+            } finally {
                 submitBtn.innerText = originalText;
                 submitBtn.disabled = false;
                 submitBtn.style.opacity = '1';
-            }, 1500);
+            }
         });
     }
 
     // Counter Animation
     const counters = document.querySelectorAll('.counter');
-    const speed = 200;
 
     const animateCounters = () => {
         counters.forEach(counter => {
-            const target = +counter.getAttribute('data-target').replace(/[^0-9]/g, '');
-            const count = +counter.innerText.replace(/[^0-9]/g, '');
-            const increment = target / speed;
+            // Se já estiver animado, ignora
+            if (counter.classList.contains('animated')) return;
+            counter.classList.add('animated');
 
-            if (count < target) {
-                const newValue = Math.ceil(count + increment);
-                counter.innerText = counter.innerText.includes('R$') 
-                    ? `+R$ ${newValue}k` 
-                    : `+${newValue}`;
-                setTimeout(animateCounters, 1);
-            } else {
-                counter.innerText = counter.getAttribute('data-target');
-            }
+            const targetStr = counter.getAttribute('data-target');
+            const targetNum = +targetStr.replace(/[^0-9]/g, '');
+            const isCurrency = targetStr.includes('R$');
+            
+            let count = 0;
+            const duration = 2000; // Duração de 2 segundos
+            const interval = 30; // Atualiza a cada 30ms
+            const steps = duration / interval;
+            const increment = targetNum / steps;
+
+            const timer = setInterval(() => {
+                count += increment;
+                if (count >= targetNum) {
+                    counter.innerText = targetStr;
+                    clearInterval(timer);
+                } else {
+                    const currentVal = Math.ceil(count);
+                    counter.innerText = isCurrency ? `+R$ ${currentVal}k` : `+${currentVal}`;
+                }
+            }, interval);
         });
     }
 
@@ -66,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                if (entry.target.classList.contains('stats')) {
+                if (entry.target.classList.contains('lauda-02-info')) {
                     animateCounters();
                 }
                 entry.target.style.opacity = '1';
@@ -77,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Initial state for observed elements
-    document.querySelectorAll('section, .form-container').forEach(el => {
+    document.querySelectorAll('section, .form-container, .lauda-02-info').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
