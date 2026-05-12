@@ -3,7 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            let target = document.querySelector(href);
+
+            if (href === '#formulario' && window.matchMedia('(max-width: 768px)').matches) {
+                target = document.querySelector('.lauda-02-form-card') || target;
+            }
+
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',
@@ -29,13 +35,92 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const db = firebase.firestore();
 
+    const formCard = document.querySelector('.lauda-02-form-card');
+    const mobileHeroFormSlot = document.querySelector('.mobile-hero-form-slot');
+    const mobileFormQuery = window.matchMedia('(max-width: 768px)');
+
+    if (formCard && mobileHeroFormSlot) {
+        const originalFormParent = formCard.parentElement;
+        const originalFormNextSibling = formCard.nextElementSibling;
+
+        const placeForm = () => {
+            if (mobileFormQuery.matches) {
+                mobileHeroFormSlot.appendChild(formCard);
+                return;
+            }
+
+            if (originalFormNextSibling) {
+                originalFormParent.insertBefore(formCard, originalFormNextSibling);
+            } else {
+                originalFormParent.appendChild(formCard);
+            }
+        };
+
+        placeForm();
+        mobileFormQuery.addEventListener('change', placeForm);
+    }
+
     // Form Submission Handling
     const leadForm = document.getElementById('contactForm');
     if (leadForm) {
+        const customSelects = leadForm.querySelectorAll('[data-select]');
+
+        customSelects.forEach(select => {
+            const trigger = select.querySelector('.custom-select-trigger');
+            const triggerText = trigger.querySelector('span');
+            const input = select.querySelector('input[type="hidden"]');
+            const options = select.querySelectorAll('[role="option"]');
+
+            trigger.addEventListener('click', () => {
+                const isOpen = select.classList.contains('is-open');
+
+                customSelects.forEach(item => {
+                    item.classList.remove('is-open');
+                    item.querySelector('.custom-select-trigger').setAttribute('aria-expanded', 'false');
+                });
+
+                select.classList.toggle('is-open', !isOpen);
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+            });
+
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    options.forEach(item => item.classList.remove('is-selected'));
+                    option.classList.add('is-selected');
+
+                    input.value = option.dataset.value;
+                    triggerText.innerText = option.innerText;
+                    select.classList.add('has-value');
+                    select.classList.remove('is-open', 'is-invalid');
+                    trigger.setAttribute('aria-expanded', 'false');
+                });
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('[data-select]')) {
+                customSelects.forEach(select => {
+                    select.classList.remove('is-open');
+                    select.querySelector('.custom-select-trigger').setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
         leadForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = leadForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerText;
+            const emptySelect = Array.from(customSelects).find(select => !select.querySelector('input').value);
+
+            customSelects.forEach(select => {
+                select.classList.toggle('is-invalid', !select.querySelector('input').value);
+            });
+
+            if (emptySelect) {
+                emptySelect.querySelector('.custom-select-trigger').focus();
+                alert('Selecione uma opção nos campos obrigatórios antes de enviar.');
+                return;
+            }
             
             // Visual feedback
             submitBtn.innerText = 'Enviando...';
@@ -60,6 +145,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 alert('Obrigado! Seus dados foram enviados com sucesso.');
                 leadForm.reset();
+                customSelects.forEach(select => {
+                    select.classList.remove('has-value', 'is-open', 'is-invalid');
+                    select.querySelector('.custom-select-trigger span').innerText = 'Selecione uma opção';
+                    select.querySelector('.custom-select-trigger').setAttribute('aria-expanded', 'false');
+                    select.querySelectorAll('[role="option"]').forEach(option => option.classList.remove('is-selected'));
+                });
             } catch (error) {
                 console.error("Erro ao enviar contato: ", error);
                 alert('Ocorreu um erro ao enviar. Verifique o console ou tente novamente mais tarde.');

@@ -31,30 +31,130 @@ body {
     padding: 0 4rem;
 }
 
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.85rem 1.55rem;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
 /* Lauda 01: Hero */
 .hero-lauda-01 {
     position: relative;
     width: 100%;
-    /* Removido min-height: 100vh para tirar o espaço vazio */
+    min-height: 100vh;
+    min-height: 100svh;
     background: url('assets/hero_bg_organized.png') no-repeat center top;
     background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 4rem;
+    padding: clamp(2rem, 4vh, 3rem) 0;
+}
+
+.hero-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .hero-header {
-    width: 100%;
-    padding: 4rem 0 7rem;
+    position: fixed;
+    top: clamp(1.25rem, 3vh, 2rem);
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(100% - 8rem, 1312px);
+    min-height: 56px;
+    padding: 0.45rem 0.55rem 0.45rem 1rem;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
     z-index: 20;
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(14px);
+}
+
+.brand-link {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
 }
 
 .main-logo {
-    height: 60px;
+    height: 30px;
     width: auto;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+.main-nav a {
+    position: relative;
+    color: rgba(255, 255, 255, 0.78);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.main-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.5rem;
+    height: 1px;
+    background: #ffffff;
+    opacity: 0;
+    transform: scaleX(0.35);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.main-nav a:hover {
+    color: #ffffff;
+}
+
+.main-nav a:hover::after {
+    opacity: 0.65;
+    transform: scaleX(1);
+}
+
+.nav-cta {
+    min-height: 40px;
+    padding: 0.7rem 1rem;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    font-size: 0.88rem;
+}
+
+.nav-cta:hover {
+    background: #1300BD;
+    border-color: #1300BD;
+    transform: translateY(-1px);
 }
 
 .hero-content {
@@ -64,18 +164,29 @@ body {
     max-width: 1200px;
 }
 
+.mobile-hero-form-slot {
+    display: none;
+}
+
 .hero-content h1 {
     font-size: clamp(2.2rem, 5.5vw, 4.2rem);
-    font-weight: 800;
+    font-weight: 300;
     line-height: 1.1;
     text-transform: uppercase;
     margin-bottom: 2.5rem;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.02em;
 }
 
 .white-glow {
     color: #fff;
+    font-weight: 800;
+    letter-spacing: 0;
     text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+}
+
+.mobile-title-text,
+.mobile-title-break {
+    display: none;
 }
 
 .hero-content .subtitle {
@@ -83,65 +194,27 @@ body {
     font-weight: 400;
     color: rgba(255, 255, 255, 0.85);
     line-height: 1.6;
-    margin-bottom: 4.5rem;
+    margin-bottom: clamp(2rem, 6vh, 4.5rem);
     max-width: 850px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .hero-cta .btn-hero {
-    display: inline-block;
-    padding: 1.5rem 4rem;
-    font-size: 1.2rem;
-    font-weight: 700;
+    min-height: 48px;
+    padding: 0.95rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
     color: white;
-    text-decoration: none;
-    background: var(--hero-btn-gradient);
-    background-size: 200% auto;
-    border-radius: 15px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 15px 45px rgba(2, 0, 194, 0.4);
+    background: #1300BD;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 12px 28px rgba(2, 0, 194, 0.22);
 }
 
 .hero-cta .btn-hero:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 25px 70px rgba(2, 0, 194, 0.6);
-    filter: brightness(1.2);
-    animation: gradientShift 2.5s ease infinite;
-}
-
-/* Floating Notifications */
-.floating-notifs {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 5;
-}
-
-.notif-float {
-    position: absolute;
-    width: 280px;
-    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.5));
-    animation: floatNotif 7s ease-in-out infinite;
-}
-
-.notif-left {
-    top: 22%;
-    left: 10%;
-}
-
-.notif-right {
-    top: 45%;
-    right: 10%;
-    animation-delay: -3.5s;
-}
-
-@keyframes floatNotif {
-    0%, 100% { transform: translateY(0) rotate(-1deg); }
-    50% { transform: translateY(-25px) rotate(1deg); }
+    background: #0C007A;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(2, 0, 194, 0.28);
 }
 
 /* Lauda 02: Transform Section */
@@ -152,35 +225,6 @@ body {
     display: flex;
     align-items: center;
     overflow: hidden;
-}
-
-.section-lauda-02::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 2003px; /* Tamanho original para não distorcer */
-    height: 413.7px; /* Tamanho original para não distorcer */
-    background: url('assets/lauda02_bg_shapes.png') no-repeat center center;
-    background-size: contain;
-    filter: brightness(0.2);
-    z-index: 1;
-    pointer-events: none;
-}
-
-.blue-shapes-layer {
-    position: absolute;
-    top: 75%; /* Descido bastante para não invadir a Lauda 01 */
-    right: -300px; /* Esconde metade da nova largura */
-    left: auto;
-    transform: translateY(-50%);
-    width: 627px; /* Reduzido em 40% do original (1045) */
-    height: 624px; /* Reduzido em 40% do original (1040) */
-    background: url('assets/lauda02_pattern.png') no-repeat center left;
-    background-size: contain;
-    z-index: 2;
-    pointer-events: none;
 }
 
 .floating-icons {
@@ -322,70 +366,149 @@ body {
 /* Form Card */
 .lauda-02-form-card {
     background: #FFFFFF;
-    padding: 2rem 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    padding: 2.2rem 2.4rem;
+    border: 1px solid rgba(216, 220, 231, 0.9);
+    border-radius: 14px;
+    box-shadow: 0 22px 50px rgba(8, 0, 59, 0.18);
     color: #000000;
     width: 100%;
     max-width: 600px;
 }
 
 .form-group {
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
+    position: relative;
 }
 
 .form-group label {
     display: block;
     font-family: 'Poppins', sans-serif;
-    font-size: 1.0625rem;
+    font-size: 0.95rem;
     font-weight: 500;
-    margin-bottom: 0.4375rem;
-    color: #000000;
-    line-height: 1;
+    margin-bottom: 0.5rem;
+    color: #101828;
+    line-height: 1.35;
 }
 
 .form-group label .blue-text {
     color: var(--primary-blue);
-    font-weight: 700;
+    font-weight: 500;
 }
 
-.form-group input, 
-.form-group select {
+.form-group input,
+.custom-select-trigger {
     width: 100%;
-    height: 34px;
-    padding: 0 0.8rem;
-    border: 1px solid #C7C7C7;
-    border-radius: 10px;
-    font-size: 0.9rem;
+    min-height: 44px;
+    padding: 0 0.95rem;
+    border: 1px solid #E0E4EC;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 400;
     font-family: 'Poppins', sans-serif;
     outline: none;
+    background-color: #FAFBFC;
+    color: #101828;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #A0A8B7;
+}
+
+.form-group input:focus,
+.custom-select.is-open .custom-select-trigger,
+.custom-select-trigger:focus {
+    border-color: var(--primary-blue);
     background-color: #FFFFFF;
-    color: #000000;
-    appearance: none;
+    box-shadow: 0 0 0 3px rgba(19, 0, 189, 0.08);
+}
+
+.custom-select {
+    position: relative;
+}
+
+.custom-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    text-align: left;
+}
+
+.custom-select-trigger::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid #667085;
+    border-bottom: 1.5px solid #667085;
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform 0.2s ease;
+    flex: 0 0 auto;
+}
+
+.custom-select.is-open .custom-select-trigger::after {
+    transform: rotate(225deg) translateY(-2px);
+}
+
+.custom-select:not(.has-value) .custom-select-trigger span {
+    color: #9AA3B5;
+}
+
+.custom-select-options {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: none;
+    max-height: 220px;
+    margin: 0;
+    padding: 0.35rem;
+    list-style: none;
+    background: #FFFFFF;
+    border: 1px solid #E0E4EC;
+    border-radius: 10px;
+    box-shadow: 0 16px 32px rgba(16, 24, 40, 0.12);
+}
+
+.custom-select.is-open .custom-select-options {
+    display: block;
+}
+
+.custom-select-options li {
+    padding: 0.68rem 0.75rem;
+    border-radius: 7px;
+    color: #101828;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.custom-select-options li:hover,
+.custom-select-options li.is-selected {
+    background: #F3F5FF;
+    color: #1300BD;
+}
+
+.custom-select.is-invalid .custom-select-trigger {
+    border-color: #D92D20;
+    box-shadow: 0 0 0 4px rgba(217, 45, 32, 0.08);
 }
 
 .btn-submit {
-    width: auto;
-    display: block;
-    margin: 0.625rem auto 0;
-    padding: 0.7rem 1.6rem;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.0625rem;
-    font-weight: 600;
+    width: 100%;
+    margin: 1.15rem auto 0;
     color: white;
-    background: linear-gradient(135deg, #1300BD 0%, #08003B 50%, #0200C2 100%);
-    background-size: 200% auto;
+    background: #1300BD;
     border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: filter 0.2s ease, transform 0.2s ease;
-    letter-spacing: 0.01em;
 }
 
 .btn-submit:hover {
-    filter: brightness(1.15);
+    background: #0C007A;
     transform: translateY(-2px);
-    animation: gradientShift 2.5s ease infinite;
+    box-shadow: 0 12px 26px rgba(19, 0, 189, 0.2);
 }
 
 /* Lauda 03: Institutional Section */
@@ -427,28 +550,19 @@ body {
 }
 
 .btn-white-blue {
-    display: inline-block;
     margin-top: 0.5rem;
-    padding: 1.25rem 5rem;
-    background: linear-gradient(135deg, #1300BD 0%, #08003B 50%, #0200C2 100%);
-    background-size: 200% auto;
+    padding: 0.9rem 2rem;
+    background: #1300BD;
     color: #ffffff;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 700;
     text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 12px;
-    letter-spacing: 0.02em;
-    transition: all 0.3s ease;
-    box-shadow: 0 12px 30px rgba(19, 0, 189, 0.3);
+    border: 1px solid rgba(19, 0, 189, 0.1);
+    box-shadow: 0 12px 28px rgba(19, 0, 189, 0.18);
 }
 
 .btn-white-blue:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 50px rgba(19, 0, 189, 0.5);
-    filter: brightness(1.1);
-    animation: gradientShift 2.5s ease infinite;
+    background: #0C007A;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(19, 0, 189, 0.24);
 }
 
 /* Keyframe para a animação do degradê fluindo no Hover */
@@ -461,153 +575,274 @@ body {
 /* Footer */
 .main-footer {
     background-color: #000000;
-    padding: 3rem 0 2rem;
+    padding: 5rem 0 2.5rem;
 }
 
-.footer-top-logo {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
-}
-
-.footer-logo-small {
-    height: 35px;
-    width: auto;
-    filter: brightness(0) invert(1);
-}
-
-.footer-middle-row {
-    display: flex;
-    justify-content: space-between;
+.footer-main-row {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) minmax(360px, 1.1fr) minmax(260px, 0.85fr);
+    gap: clamp(3rem, 8vw, 8rem);
     align-items: flex-start;
-    margin-bottom: 3rem;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+    padding-bottom: 3.8rem;
 }
 
-.footer-legal-left {
+.footer-brand,
+.footer-company,
+.footer-social {
+    min-width: 0;
+}
+
+.footer-logo {
+    display: block;
+    width: 190px;
+    height: auto;
+    margin-bottom: 1.9rem;
+}
+
+.footer-brand p {
+    max-width: 390px;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.6;
-    letter-spacing: 0.02em;
-    text-align: left;
+    font-size: clamp(0.86rem, 0.95vw, 1rem);
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.72);
 }
 
-.footer-legal-left p {
-    margin-bottom: 0.3rem;
+.footer-company h2,
+.footer-social h2 {
+    margin-bottom: 1.75rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    color: rgba(255,255,255,0.46);
 }
 
-.footer-social-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.footer-company p {
+    margin-bottom: 0.65rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.84rem, 0.92vw, 1rem);
+    font-weight: 300;
+    line-height: 1.35;
+    color: rgba(255,255,255,0.72);
+}
+
+.footer-map-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    margin-top: 0.65rem;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.04);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    line-height: 1;
+    color: rgba(255,255,255,0.86);
+    text-decoration: none;
+    transition: color 0.25s ease, transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.footer-map-link:hover {
+    color: #ffffff;
+    transform: translateY(-1px);
+    border-color: rgba(255,255,255,0.36);
+    background: rgba(255,255,255,0.08);
 }
 
 .social-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: clamp(1.35rem, 1.75vw, 1.8rem);
+    font-weight: 800;
+    line-height: 1;
     color: #ffffff;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .social-subtitle {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 1rem;
+    font-size: clamp(0.84rem, 0.92vw, 0.98rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 1.5rem;
 }
 
 .footer-social-icons {
     display: flex;
-    gap: 1rem;
+    gap: 0.9rem;
+}
+
+.footer-social-icons a {
+    width: 56px;
+    height: 56px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.04);
+    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 
 .footer-social-icons a img {
-    height: 24px;
+    max-width: 25px;
+    max-height: 25px;
     filter: brightness(0) invert(1);
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.9;
+    transition: opacity 0.25s ease;
+}
+
+.footer-social-icons a:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.38);
+    background: rgba(255,255,255,0.08);
 }
 
 .footer-social-icons a:hover img {
-    transform: scale(1.15);
-    opacity: 0.75;
+    opacity: 1;
 }
 
 .footer-bottom-line {
-    border-top: 1px solid rgba(255,255,255,0.2);
-    padding-top: 1.5rem;
-    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.13);
+    padding-top: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.7);
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.62);
 }
 
 .privacy-link {
-    color: #0200C2;
+    color: rgba(255,255,255,0.82);
     text-decoration: none;
-    transition: color 0.3s ease;
+    font-weight: 300;
+    white-space: nowrap;
+    transition: color 0.25s ease;
 }
 
 .privacy-link:hover {
-    color: #1300BD;
+    color: #ffffff;
     text-decoration: underline;
 }
 
 /* Responsive */
 @media (max-width: 1200px) {
     .hero-content h1 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
-    .notif-left { left: 5%; width: 220px; }
-    .notif-right { right: 5%; width: 220px; }
 }
 
 @media (max-width: 992px) {
     .container { padding: 0 2rem; }
     
-    .hero-lauda-01 { padding-bottom: 4rem; }
+    .hero-lauda-01 { padding: clamp(1.5rem, 4vh, 3rem) 0; }
+    .hero-header { width: calc(100% - 4rem); }
     .ac-icon { display: none; }
     
     .lauda-02-grid { grid-template-columns: 1fr; gap: 4rem; }
     .section-lauda-02 { padding: 4rem 0; min-height: auto; }
-    
-    /* Footer totalmente alinhado à esquerda no mobile como no Figma */
-    .footer-middle-row { flex-direction: column; align-items: flex-start; text-align: left; gap: 2.5rem; }
-    .footer-legal-left, .footer-social-right { text-align: left; align-items: flex-start; }
+    .footer-main-row {
+        grid-template-columns: 1fr;
+        gap: 2.75rem;
+        padding-bottom: 3rem;
+    }
+
+    .footer-brand p {
+        max-width: 520px;
+    }
 }
 
 @media (max-width: 768px) {
     .container { padding: 0 1.5rem; }
+    .hero-lauda-01 {
+        min-height: auto;
+        background-image: url('assets/bg mobile 2.png');
+        background-position: left top;
+        background-size: auto 100vh;
+        background-size: auto 100svh;
+        padding: 6rem 0 3rem;
+    }
     
-    /* Alinhamento à esquerda para Logo e Hero */
-    .hero-header { padding: 1.5rem 0 2rem; justify-content: flex-start; } 
-    .main-logo { width: 120px; height: auto; } /* Bem menor, igual ao Figma e alinhada à esquerda! */
-    .hero-content { text-align: left; margin: 0; }
+    .hero-header {
+        top: 1rem;
+        width: calc(100% - 3rem);
+        min-height: 52px;
+        padding: 0.4rem 0.45rem 0.4rem 0.85rem;
+        justify-content: space-between;
+        gap: 0.75rem;
+    }
+    .main-nav { display: none; }
+    .hero-container {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .main-logo { width: 108px; height: auto; }
+    .nav-cta {
+        min-height: 38px;
+        padding: 0.62rem 0.85rem;
+        font-size: 0.78rem;
+    }
+    .hero-content {
+        text-align: left;
+        margin: 3.25rem 0 0;
+        max-width: 390px;
+    }
     
-    .hero-content h1 { font-size: 2.1rem; line-height: 1.1; margin-bottom: 0.8rem; letter-spacing: -0.5px; font-weight: 400; }
-    .hero-content h1 .white-glow { font-weight: 800; }
-    .hero-content .subtitle { font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4; padding-right: 1rem; color: rgba(255,255,255,0.8); }
+    .desktop-title-text { display: none; }
+    .desktop-subtitle-break { display: none; }
+    .mobile-title-text,
+    .mobile-title-break { display: inline; }
+    .mobile-title-break { display: block; }
     
-    /* Botões menores e alinhados */
-    .hero-cta { text-align: left; }
+    .hero-content h1 {
+        font-size: 2.45rem;
+        line-height: 0.96;
+        margin-bottom: 0.75rem;
+        letter-spacing: 0;
+        font-weight: 300;
+    }
+    .hero-content h1 .white-glow {
+        display: inline-block;
+        font-size: 2.45rem;
+        line-height: 0.98;
+        font-weight: 800;
+    }
+    .hero-content .subtitle {
+        max-width: 390px;
+        padding-right: 0;
+        font-size: 1.35rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.02;
+        color: rgba(255,255,255,0.9);
+    }
+    
+    .mobile-hero-form-slot {
+        display: block;
+        width: 100%;
+        margin-top: 2rem;
+        position: relative;
+        z-index: 10;
+    }
+
+    .hero-cta { display: none; }
     .hero-cta .btn-hero { 
-        padding: 0.9rem 1.2rem; 
-        font-size: 0.85rem; 
+        min-height: 42px;
+        padding: 0.78rem 1.1rem;
+        font-size: 0.85rem;
         width: auto; 
         max-width: none; 
-        display: inline-block;
         text-align: center;
         white-space: nowrap; /* Uma linha só, como no Figma */
     }
     
-    /* Notificações mobile restauradas e redimensionadas */
-    .notif-float { width: 140px; height: auto; border-radius: 8px; }
-    .notif-right { top: 10%; right: 0; }
-    .notif-left { top: 60%; left: -2%; }
-    
     .lauda-02-grid { gap: 2.5rem; }
+    .lauda-02-form-card { order: 1; }
+    .lauda-02-info { order: 2; }
     
     .title-uppercase { font-size: 1.8rem; margin-bottom: 1rem; line-height: 1.2; }
     .description { font-size: 0.85rem; margin-bottom: 2rem; }
@@ -633,17 +868,44 @@ body {
     .institutional-title { font-size: 1.6rem; text-align: left; margin-bottom: 0.5rem; }
     .institutional-text { font-size: 0.95rem; text-align: left; margin-bottom: 1.5rem; }
     .btn-white-blue { 
-        padding: 0.9rem 1.5rem; 
-        font-size: 0.9rem; 
+        min-height: 42px;
+        padding: 0.78rem 1.2rem;
+        font-size: 0.85rem;
         width: 100%; 
         max-width: 280px; 
-        display: inline-block;
         text-align: center;
+    }
+
+    .main-footer {
+        padding: 4rem 0 2rem;
+    }
+
+    .footer-logo {
+        width: 165px;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-company h2,
+    .footer-social h2 {
+        margin-bottom: 1.25rem;
+    }
+
+    .footer-social-icons a {
+        width: 52px;
+        height: 52px;
+    }
+
+    .footer-bottom-line {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .hero-content h1 { font-size: 1.7rem; }
+    .hero-content h1,
+    .hero-content h1 .white-glow { font-size: 2.35rem; }
+    .hero-content .subtitle { font-size: 1.22rem; }
     .title-uppercase { font-size: 1.8rem; }
     .stat-number { font-size: 2.2rem; }
 }

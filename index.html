@@ -9,31 +9,35 @@
 </head>
 <body>
     <!-- Lauda 01: Hero Section -->
-    <section class="hero-lauda-01">
-        <div class="floating-notifs">
-            <img src="assets/notif_left.png" alt="Shopee Notification" class="notif-float notif-left">
-            <img src="assets/notif_right.png" alt="Shopee Notification" class="notif-float notif-right">
-        </div>
-
+    <section id="topo" class="hero-lauda-01">
         <div class="container hero-container">
             <header class="hero-header">
-                <img src="assets/logo_centered.png" alt="Atlas Company Logo" class="main-logo">
+                <a href="#topo" class="brand-link" aria-label="Atlas Company">
+                    <img src="assets/logo_vetor.svg" alt="Atlas Company Logo" class="main-logo">
+                </a>
+                <nav class="main-nav" aria-label="Menu principal">
+                    <a href="#topo">Início</a>
+                    <a href="#formulario">Resultados</a>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#contato">Contato</a>
+                </nav>
+                <a href="#formulario" class="btn nav-cta">Diagnóstico</a>
             </header>
             
             <div class="hero-content">
-                <h1>SEU PRODUTO NÃO <br> VENDE MAIS PORQUE <br> <span class="white-glow">SUA OPERAÇÃO É FRACA</span></h1>
-                <p class="subtitle">Nós gerenciamos sua operação e aplicamos estratégias para <br> transformar sua loja em uma máquina de vendas previsíveis.</p>
+                <h1>SEU PRODUTO<span class="desktop-title-text"> NÃO</span><br><span class="mobile-title-text">NÃO </span>VENDE <span class="desktop-title-text">MAIS PORQUE</span><br class="mobile-title-break"><span class="mobile-title-text">MAIS PORQUE</span><br> <span class="white-glow">SUA OPERAÇÃO É FRACA</span></h1>
+                <p class="subtitle">Nós gerenciamos sua operação e aplicamos estratégias para <br class="desktop-subtitle-break"> transformar sua loja em uma máquina de vendas previsíveis.</p>
                 
                 <div class="hero-cta">
                     <a href="#formulario" class="btn btn-hero">Quero escalar meu faturamento</a>
                 </div>
             </div>
+            <div class="mobile-hero-form-slot"></div>
         </div>
     </section>
 
     <!-- Lauda 02: Transform Section -->
     <section id="formulario" class="section-lauda-02">
-        <div class="blue-shapes-layer"></div>
         <div class="floating-icons">
             <img src="assets/icon_ac_1.png" alt="" class="ac-icon ac-icon-1">
             <img src="assets/icon_ac_2.png" alt="" class="ac-icon ac-icon-2">
@@ -74,43 +78,53 @@
                 <form id="contactForm">
                     <div class="form-group">
                         <label for="name">Qual o seu nome completo?</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" placeholder="Ex: Ana Carolina Silva" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Qual é o seu e-mail?</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="voce@empresa.com.br" required>
                     </div>
                     <div class="form-group">
                         <label for="whatsapp">Qual o seu WhatsApp com DDD?</label>
-                        <input type="text" id="whatsapp" name="whatsapp" required>
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="(31) 99999-9999" required>
                     </div>
                     <div class="form-group">
                         <label for="company">Qual o nome da sua empresa?</label>
-                        <input type="text" id="company" name="company" required>
+                        <input type="text" id="company" name="company" placeholder="Nome da sua marca ou empresa" required>
                     </div>
                     <div class="form-group">
                         <label for="employees">Quantos funcionários sua empresa possui?</label>
-                        <select id="employees" name="employees" required>
-                            <option value="" disabled selected>Selecione uma opção</option>
-                            <option value="1-5">1-5</option>
-                            <option value="6-20">6-20</option>
-                            <option value="21-50">21-50</option>
-                            <option value="50+">50+</option>
-                        </select>
+                        <div class="custom-select" data-select>
+                            <input type="hidden" id="employees" name="employees" required>
+                            <button type="button" class="custom-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                                <span>Selecione uma opção</span>
+                            </button>
+                            <ul class="custom-select-options" role="listbox">
+                                <li role="option" data-value="1-5">1-5 </li>
+                                <li role="option" data-value="6-20">6-20 </li>
+                                <li role="option" data-value="21-50">21-50 </li>
+                                <li role="option" data-value="50+">Mais de 50 </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="revenue">No último mês, qual foi o <span class="blue-text">faturamento</span> total da sua empresa?</label>
-                        <select id="revenue" name="revenue" required>
-                            <option value="" disabled selected>Selecione uma opção</option>
-                            <option value="0-10k">Até R$ 10k</option>
-                            <option value="10k-50k">R$ 10k - R$ 50k</option>
-                            <option value="50k-100k">R$ 50k - R$ 100k</option>
-                            <option value="100k+">Mais de R$ 100k</option>
-                        </select>
+                        <label for="revenue">No último mês, qual foi o faturamento total da sua empresa?</label>
+                        <div class="custom-select" data-select>
+                            <input type="hidden" id="revenue" name="revenue" required>
+                            <button type="button" class="custom-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                                <span>Selecione uma opção</span>
+                            </button>
+                            <ul class="custom-select-options" role="listbox">
+                                <li role="option" data-value="0-10k">Até R$ 10k</li>
+                                <li role="option" data-value="10k-50k">R$ 10k - R$ 50k</li>
+                                <li role="option" data-value="50k-100k">R$ 50k - R$ 100k</li>
+                                <li role="option" data-value="100k+">Mais de R$ 100k</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="experience">Você já vendeu nos Marketplaces?</label>
-                        <input type="text" id="experience" name="experience" required>
+                        <input type="text" id="experience" name="experience" placeholder="Ex: Sim, vendo na Shopee e Mercado Livre" required>
                     </div>
                     <button type="submit" class="btn btn-submit">Enviar contato</button>
                 </form>
@@ -119,7 +133,7 @@
     </section>
 
     <!-- Lauda 03: Institutional Section -->
-    <section class="section-lauda-03">
+    <section id="sobre" class="section-lauda-03">
         <div class="container institutional-container">
             <div class="institutional-content">
                 <h2 class="institutional-title">A assessoria que pensa como vendedor</h2>
@@ -130,21 +144,27 @@
     </section>
 
     <!-- Footer -->
-    <footer class="main-footer">
+    <footer id="contato" class="main-footer">
         <div class="container">
-            <div class="footer-top-logo">
-                <img src="assets/logo_centered.png" alt="Atlas Company" class="footer-logo-small">
-            </div>
-            
-            <div class="footer-middle-row">
-                <div class="footer-legal-left">
-                    <p>CNPJ: 50.840.165/0001-44 ATLAS COMPANY</p>
+            <div class="footer-main-row">
+                <div class="footer-brand">
+                    <img src="assets/logo_vetor.svg" alt="Atlas Company" class="footer-logo">
+                    <p>Assessoria de marketplace para empresas que querem vender com mais previsibilidade, opera&ccedil;&atilde;o e estrat&eacute;gia.</p>
+                </div>
+
+                <div class="footer-company">
+                    <h2>EMPRESA</h2>
+                    <p>ATLAS COMPANY</p>
                     <p>ASSESSORIA DE MARKETPLACE</p>
-                    <p>Rua Jose Maria de Lacerda, 1900 - Cidade Industrial</p>
-                    <p>Contagem - MG, 32.210-120</p>
+                    <p>Rua Jo&atilde;o Joaquim do Amaral, 721 - Centro</p>
+                    <p>Nova Serrana - MG, 32.210-120</p>
+                    <a class="footer-map-link" href="https://maps.app.goo.gl/CR14vd4VMhKaAAzNA" target="_blank" rel="noopener noreferrer" aria-label="Ver endere&ccedil;o da Atlas Company no Google Maps">
+                        Ver no mapa
+                    </a>
                 </div>
                 
-                <div class="footer-social-right">
+                <div class="footer-social">
+                    <h2>REDES SOCIAIS</h2>
                     <h3 class="social-title">#vemparaatlas</h3>
                     <p class="social-subtitle">Siga-nos nas redes sociais:</p>
                     <div class="footer-social-icons">
@@ -156,7 +176,8 @@
             </div>
             
             <div class="footer-bottom-line">
-                <p>Todos os direitos reservados. <a href="#" class="privacy-link">[Política de Privacidade]</a></p>
+                <p>&copy; 2026 Atlas Company. Todos os direitos reservados.</p>
+                <a href="#" class="privacy-link">Pol&iacute;tica de Privacidade</a>
             </div>
         </div>
     </footer>
