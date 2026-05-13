@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
-
 :root {
     --primary-blue: #0200C2;
     --vibrant-blue: #1300BD;
@@ -373,6 +371,91 @@ body {
     color: #000000;
     width: 100%;
     max-width: 600px;
+}
+
+.lauda-02-form-card.is-success #contactForm {
+    display: none;
+}
+
+.form-success-panel {
+    min-height: 618px;
+    padding: 1.75rem;
+    border: 1px solid #DDE2F3;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FBFCFF 100%);
+}
+
+.form-success-panel[hidden] {
+    display: none;
+}
+
+.lauda-02-form-card.is-success .form-success-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-card-inner {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.success-icon {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1.2rem;
+    border-radius: 50%;
+    background: #1300BD;
+    box-shadow: 0 12px 28px rgba(19, 0, 189, 0.22);
+}
+
+.success-icon::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 13px;
+    width: 14px;
+    height: 24px;
+    border-right: 3px solid #FFFFFF;
+    border-bottom: 3px solid #FFFFFF;
+    transform: rotate(45deg);
+}
+
+.success-card-inner h3 {
+    margin: 0 0 0.6rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #15151C;
+}
+
+.success-card-inner p {
+    margin: 0 auto 1.6rem;
+    max-width: 300px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.45;
+    color: #5E6271;
+}
+
+.btn-success-reset {
+    min-height: 48px;
+    padding: 0.8rem 1.45rem;
+    border: 1px solid rgba(19, 0, 189, 0.2);
+    background: #FFFFFF;
+    color: #1300BD;
+    font-weight: 700;
+}
+
+.btn-success-reset:hover {
+    background: #F6F7FF;
+    border-color: rgba(19, 0, 189, 0.38);
+    transform: translateY(-1px);
 }
 
 .form-group {
@@ -761,7 +844,7 @@ body {
     .container { padding: 0 1.5rem; }
     .hero-lauda-01 {
         min-height: auto;
-        background-image: url('assets/bg mobile 2.png');
+        background-image: url('assets/bg-mobile-optimized.jpg');
         background-position: left top;
         background-size: auto 100vh;
         background-size: auto 100svh;
@@ -861,6 +944,10 @@ body {
     .partner-logo { max-height: 18px; }
     
     .lauda-02-form-card { padding: 2rem 1.5rem; margin-right: 0; }
+    .form-success-panel {
+        min-height: 560px;
+        padding: 1.35rem;
+    }
     
     /* Lauda 03 também à esquerda */
     .section-lauda-03 { padding: 3rem 0; text-align: left; }

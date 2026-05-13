@@ -29,11 +29,49 @@ document.addEventListener('DOMContentLoaded', () => {
         appId: "1:451783344947:web:83e55e36221a3dd7b83446"
     };
 
-    // Inicializa o Firebase
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
-    const db = firebase.firestore();
+    const loadScriptOnce = (src) => new Promise((resolve, reject) => {
+        const existingScript = document.querySelector(`script[src="${src}"]`);
+
+        if (existingScript) {
+            if (existingScript.dataset.loaded === 'true') {
+                resolve();
+                return;
+            }
+
+            existingScript.addEventListener('load', resolve, { once: true });
+            existingScript.addEventListener('error', reject, { once: true });
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.dataset.loaded = 'false';
+        script.onload = () => {
+            script.dataset.loaded = 'true';
+            resolve();
+        };
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+
+    let firebaseDbPromise;
+    const getLeadDb = () => {
+        if (!firebaseDbPromise) {
+            firebaseDbPromise = Promise.resolve()
+                .then(() => loadScriptOnce('https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js'))
+                .then(() => loadScriptOnce('https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js'))
+                .then(() => {
+                    if (!firebase.apps.length) {
+                        firebase.initializeApp(firebaseConfig);
+                    }
+
+                    return firebase.firestore();
+                });
+        }
+
+        return firebaseDbPromise;
+    };
 
     const formCard = document.querySelector('.lauda-02-form-card');
     const mobileHeroFormSlot = document.querySelector('.mobile-hero-form-slot');
@@ -64,6 +102,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const leadForm = document.getElementById('contactForm');
     if (leadForm) {
         const customSelects = leadForm.querySelectorAll('[data-select]');
+        const successPanel = formCard ? formCard.querySelector('.form-success-panel') : null;
+        const resetSuccessButton = formCard ? formCard.querySelector('.btn-success-reset') : null;
+
+        const resetCustomSelects = () => {
+            customSelects.forEach(select => {
+                select.classList.remove('has-value', 'is-open', 'is-invalid');
+                select.querySelector('.custom-select-trigger span').innerText = 'Selecione uma opÃ§Ã£o';
+                select.querySelector('.custom-select-trigger').setAttribute('aria-expanded', 'false');
+                select.querySelectorAll('[role="option"]').forEach(option => option.classList.remove('is-selected'));
+            });
+        };
+
+        const showSuccessState = () => {
+            leadForm.reset();
+            resetCustomSelects();
+
+            if (successPanel && formCard) {
+                successPanel.hidden = false;
+                formCard.classList.add('is-success');
+                formCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        };
+
+        const showFormState = () => {
+            if (successPanel && formCard) {
+                formCard.classList.remove('is-success');
+                successPanel.hidden = true;
+            }
+        };
+
+        if (resetSuccessButton) {
+            resetSuccessButton.addEventListener('click', showFormState);
+        }
 
         customSelects.forEach(select => {
             const trigger = select.querySelector('.custom-select-trigger');
@@ -136,14 +207,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 funcionarios: document.getElementById('employees').value,
                 faturamento: document.getElementById('revenue').value,
                 experiencia: document.getElementById('experience').value,
-                dataCadastro: firebase.firestore.FieldValue.serverTimestamp()
+                dataCadastro: new Date()
             };
 
             try {
                 // Salva no Firestore na coleção 'leads'
+                const db = await getLeadDb();
+                formData.dataCadastro = firebase.firestore.FieldValue.serverTimestamp();
+
                 await db.collection("leads").add(formData);
 
-                alert('Obrigado! Seus dados foram enviados com sucesso.');
+                showSuccessState();
                 leadForm.reset();
                 customSelects.forEach(select => {
                     select.classList.remove('has-value', 'is-open', 'is-invalid');
@@ -213,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Initial state for observed elements
-    document.querySelectorAll('section, .form-container, .lauda-02-info').forEach(el => {
+    document.querySelectorAll('.lauda-02-info').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';

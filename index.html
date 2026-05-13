@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atlas Company | Soluções para Marketplaces</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="assets/bg-mobile-optimized.jpg" media="(max-width: 768px)">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -39,9 +42,9 @@
     <!-- Lauda 02: Transform Section -->
     <section id="formulario" class="section-lauda-02">
         <div class="floating-icons">
-            <img src="assets/icon_ac_1.png" alt="" class="ac-icon ac-icon-1">
-            <img src="assets/icon_ac_2.png" alt="" class="ac-icon ac-icon-2">
-            <img src="assets/icon_ac_3.png" alt="" class="ac-icon ac-icon-3">
+            <img src="assets/icon_ac_1.png" alt="" class="ac-icon ac-icon-1" loading="lazy" decoding="async">
+            <img src="assets/icon_ac_2.png" alt="" class="ac-icon ac-icon-2" loading="lazy" decoding="async">
+            <img src="assets/icon_ac_3.png" alt="" class="ac-icon ac-icon-3" loading="lazy" decoding="async">
         </div>
 
         <div class="container lauda-02-grid">
@@ -65,10 +68,10 @@
                     <span class="partners-label"><span class="partners-label-regular">PARCEIROS</span> <span class="partners-label-bold">OFICIAIS</span></span>
                     <div class="partners-pills">
                         <div class="partner-pill pill-new-partner">
-                            <img src="assets/logo_mercado_livre.png" alt="Partner">
+                            <img src="assets/logo_mercado_livre.png" alt="Partner" loading="lazy" decoding="async">
                         </div>
                         <div class="partner-pill pill-shein">
-                            <img src="assets/logo_shein.png" alt="Shein">
+                            <img src="assets/logo_shein.png" alt="Shein" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -128,6 +131,14 @@
                     </div>
                     <button type="submit" class="btn btn-submit">Enviar contato</button>
                 </form>
+                <div class="form-success-panel" hidden>
+                    <div class="success-card-inner">
+                        <div class="success-icon" aria-hidden="true"></div>
+                        <h3>Obrigado pelo contato!</h3>
+                        <p>Recebemos seus dados e nossa equipe vai falar com voc&ecirc; em breve.</p>
+                        <button type="button" class="btn btn-success-reset">Enviar outro</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -148,7 +159,7 @@
         <div class="container">
             <div class="footer-main-row">
                 <div class="footer-brand">
-                    <img src="assets/logo_vetor.svg" alt="Atlas Company" class="footer-logo">
+                    <img src="assets/logo_vetor.svg" alt="Atlas Company" class="footer-logo" loading="lazy" decoding="async">
                     <p>Assessoria de marketplace para empresas que querem vender com mais previsibilidade, opera&ccedil;&atilde;o e estrat&eacute;gia.</p>
                 </div>
 
@@ -157,7 +168,7 @@
                     <p>ATLAS COMPANY</p>
                     <p>ASSESSORIA DE MARKETPLACE</p>
                     <p>Rua Jo&atilde;o Joaquim do Amaral, 721 - Centro</p>
-                    <p>Nova Serrana - MG, 32.210-120</p>
+                    <p>Nova Serrana - MG, 35.520-042</p>
                     <a class="footer-map-link" href="https://maps.app.goo.gl/CR14vd4VMhKaAAzNA" target="_blank" rel="noopener noreferrer" aria-label="Ver endere&ccedil;o da Atlas Company no Google Maps">
                         Ver no mapa
                     </a>
@@ -168,9 +179,9 @@
                     <h3 class="social-title">#vemparaatlas</h3>
                     <p class="social-subtitle">Siga-nos nas redes sociais:</p>
                     <div class="footer-social-icons">
-                        <a href="#" aria-label="Instagram"><img src="assets/icon_instagram.png" alt="Instagram"></a>
-                        <a href="#" aria-label="YouTube"><img src="assets/icon_youtube.png" alt="YouTube"></a>
-                        <a href="#" aria-label="LinkedIn"><img src="assets/icon_linkedin.png" alt="LinkedIn"></a>
+                        <a href="#" aria-label="Instagram"><img src="assets/icon_instagram.png" alt="Instagram" loading="lazy" decoding="async"></a>
+                        <a href="#" aria-label="YouTube"><img src="assets/icon_youtube.png" alt="YouTube" loading="lazy" decoding="async"></a>
+                        <a href="#" aria-label="LinkedIn"><img src="assets/icon_linkedin.png" alt="LinkedIn" loading="lazy" decoding="async"></a>
                     </div>
                 </div>
             </div>
@@ -182,10 +193,6 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK (Compat version for simplicity) -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
-
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
 </body>
 </html>
